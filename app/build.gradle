@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
+    generateSigningConfigs()
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
 
@@ -8,18 +9,20 @@ android {
         applicationId "by.whiskarek.calculator"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-
+        versionName = getNewVersionName()
+        versionCode = getVersionCode(versionName)
+        archivesBaseName = "$applicationId-v$versionCode($versionName)"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
+            versionNameSuffix "-R"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
+            versionNameSuffix "-T"
             applicationIdSuffix ".debug"
             debuggable true
         }
@@ -37,8 +40,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
 }
@@ -52,6 +55,69 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
 
-    implementation 'com.jackandphantom.android:customtogglebutton:1.0.1'
+def generateSigningConfigs() {
+    def keystorePropertiesFile = rootProject.file('keystore.properties')
+    if (!keystorePropertiesFile.exists()) {
+        System.err.println("[Signing] Couldn't find keystore.properties file. " +
+                "Your apk will not be signed.")
+        return
+    }
+    def keystoreProperties = new Properties()
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+    if (!keystoreProperties.containsKey('storeFile')) {
+        System.err.println("[Signing] Your keystore.properties should contain 'storeFile' key. " +
+                "Your apk will not be signed.")
+        return
+    }
+    if (!new File(keystoreProperties['storeFile']).exists()) {
+        System.err.println("[Signing] 'storeFile' key in keystore.properties should be" +
+                " a valid path to your keystore.jks. Your apk will not be signed.")
+        return
+    }
+    android.signingConfigs {
+        release {
+            storeFile = new File(keystoreProperties['storeFile'])
+            storePassword = keystoreProperties['storePassword']
+            keyAlias = keystoreProperties['keyAlias']
+            keyPassword = keystoreProperties['keyPassword']
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+    android.buildTypes {
+        release {
+            signingConfig android.signingConfigs.release
+        }
+    }
+}
+
+static def getNewVersionName() {
+    def tag = getLastTagName()
+    def patch = getCommitsAfterLastTagCount(tag)
+    return tag + '.' + patch
+}
+
+static def getVersionCode(def versionName) {
+    def versions = versionName.split('\\.')
+    if (versions.size() != 3)
+        return 1
+    return 10000000 * Integer.parseInt(versions[0]) +
+            100000 * Integer.parseInt(versions[1]) +
+            1000 * Integer.parseInt(versions[2])
+}
+
+static def getLastTagName() {
+    def git_describe_query = "git describe --abbrev=0"
+    def git_describe_response = ["bash", "-c", git_describe_query].execute()
+    git_describe_response.waitFor()
+    return git_describe_response.text.trim()
+}
+
+static def getCommitsAfterLastTagCount(def tag) {
+    def git_rev_list_query = "git rev-list ${tag}..HEAD --no-merges --count"
+    def git_rev_list_response = ["bash", "-c", git_rev_list_query].execute()
+    git_rev_list_response.waitFor()
+    return git_rev_list_response.text.trim()
 }

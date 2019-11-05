@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         }
     }
 
-    public void onKeyPress(View view) {
+    public void onKeyPress(@NotNull View view) {
         switch (view.getId()) {
             case R.id.btn_eq:
                 onEquals();

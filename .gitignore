@@ -14,3 +14,4 @@
 .cxx
 .gradle
 /app/build
+keystore.properties
