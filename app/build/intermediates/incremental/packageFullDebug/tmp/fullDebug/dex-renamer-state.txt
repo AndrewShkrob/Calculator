@@ -1,0 +1,7 @@
+#Tue Nov 05 19:40:27 MSK 2019
+base.0=D\:\\University\\PPO\\Calculator\\app\\build\\intermediates\\dex\\fullDebug\\mergeExtDexFullDebug\\classes.dex
+path.1=classes.dex
+renamed.1=classes2.dex
+path.0=classes.dex
+renamed.0=classes.dex
+base.1=D\:\\University\\PPO\\Calculator\\app\\build\\intermediates\\dex\\fullDebug\\mergeProjectDexFullDebug\\classes.dex

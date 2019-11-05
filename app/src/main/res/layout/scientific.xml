@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/buttonScientific"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_inv"
+            style="@style/ButtonScientific"
+            android:text="INV" />
+
+        <Button
+            android:id="@+id/btn_sin"
+            style="@style/ButtonScientific"
+            android:text="sin" />
+
+        <Button
+            android:id="@+id/btn_ln"
+            style="@style/ButtonScientific"
+            android:text="ln" />
+
+        <Button
+            android:id="@+id/btn_pi"
+            style="@style/ButtonScientific"
+            android:text="Pi" />
+
+        <Button
+            android:id="@+id/btn_sc_op"
+            style="@style/ButtonScientific"
+            android:text="(" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/buttonScientific"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_deg"
+            style="@style/ButtonScientific"
+            android:text="DEG" />
+
+        <Button
+            android:id="@+id/btn_cos"
+            style="@style/ButtonScientific"
+            android:text="cos" />
+
+        <Button
+            android:id="@+id/btn_log"
+            style="@style/ButtonScientific"
+            android:text="log" />
+
+        <Button
+            android:id="@+id/btn_e"
+            style="@style/ButtonScientific"
+            android:text="e" />
+
+        <Button
+            android:id="@+id/btn_sc_cl"
+            style="@style/ButtonScientific"
+            android:text=")" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/buttonScientific"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_percent"
+            style="@style/ButtonScientific"
+            android:text="%" />
+
+        <Button
+            android:id="@+id/btn_tan"
+            style="@style/ButtonScientific"
+            android:text="tan" />
+
+        <Button
+            android:id="@+id/btn_fact"
+            style="@style/ButtonScientific"
+            android:text="!" />
+
+        <Button
+            android:id="@+id/btn_pow"
+            style="@style/ButtonScientific"
+            android:text="^" />
+
+        <Button
+            android:id="@+id/btn_sqr"
+            style="@style/ButtonScientific"
+            android:text="sqr" />
+    </LinearLayout>
+
+</LinearLayout>
