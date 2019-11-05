@@ -1,1 +1,0 @@
-[{"outputType":{"type":"BUNDLE_MANIFEST"},"apkData":{"type":"MAIN","splits":[],"versionCode":1,"versionName":"1.0-full","enabled":true,"outputFile":"app-full-debug.apk","fullName":"fullDebug","baseName":"full-debug","dirName":""},"path":"AndroidManifest.xml","properties":{"packageId":"by.whiskarek.calculator.full.debug","split":"","minSdkVersion":"23"}}]
