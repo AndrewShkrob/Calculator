@@ -14,18 +14,18 @@
     <Button
         android:id="@+id/btn_div"
         style="@style/ButtonControl"
-        android:text="÷"
+        android:text="/"
         android:textSize="40sp" />
 
     <Button
         android:id="@+id/btn_mul"
         style="@style/ButtonControl"
-        android:text="✕" />
+        android:text="*" />
 
     <Button
         android:id="@+id/btn_sub"
         style="@style/ButtonControl"
-        android:text="—" />
+        android:text="-" />
 
     <Button
         android:id="@+id/btn_add"

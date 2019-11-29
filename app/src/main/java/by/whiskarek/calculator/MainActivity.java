@@ -1,15 +1,22 @@
 package by.whiskarek.calculator;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.ViewPager;
-
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
+
+import com.singularsys.jep.EmptyOperatorTable;
+import com.singularsys.jep.Jep;
+import com.singularsys.jep.JepException;
+import com.singularsys.jep.Operator;
+import com.singularsys.jep.OperatorTable2;
+import com.singularsys.jep.misc.functions.Factorial;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -18,7 +25,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnLongClickListener {
 
+    public enum MyOperators implements EmptyOperatorTable.OperatorKey {FACT}
+
     private EditText screen;
+    private Jep jep = new Jep();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +36,14 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         setContentView(R.layout.activity_main);
         onCreateFlavor();
         screen = findViewById(R.id.screen);
+
+        // Build the operator
+        Operator factop = new Operator("FACT", "!",
+                new Factorial(),
+                Operator.SUFFIX + Operator.UNARY + Operator.LEFT);
+        ((OperatorTable2) jep.getOperatorTable()).addOperator(new EmptyOperatorTable.OperatorKey() {
+        }, factop);
+        jep.reinitializeComponents();
     }
 
     private void onCreateFlavor() {
@@ -70,7 +88,8 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
             case R.id.btn_ln:
             case R.id.btn_log:
             case R.id.btn_sin:
-            case R.id.btn_tan:
+            case R.id.btn_e:
+            case R.id.btn_sqrt:
                 screen.append(((Button) view).getText() + "(");
                 break;
             default:
@@ -86,7 +105,13 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
     }
 
     private void onEquals() {
+        try {
+            jep.parse(screen.getText().toString());
+            Object result = jep.evaluate();
 
+            screen.setText(result.toString());
+        } catch (JepException ignored) {
+        }
     }
 
     @Override

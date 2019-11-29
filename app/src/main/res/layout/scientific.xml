@@ -13,11 +13,6 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btn_inv"
-            style="@style/ButtonScientific"
-            android:text="INV" />
-
-        <Button
             android:id="@+id/btn_sin"
             style="@style/ButtonScientific"
             android:text="sin" />
@@ -30,7 +25,7 @@
         <Button
             android:id="@+id/btn_pi"
             style="@style/ButtonScientific"
-            android:text="Pi" />
+            android:text="pi" />
 
         <Button
             android:id="@+id/btn_sc_op"
@@ -46,11 +41,6 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btn_deg"
-            style="@style/ButtonScientific"
-            android:text="DEG" />
-
-        <Button
             android:id="@+id/btn_cos"
             style="@style/ButtonScientific"
             android:text="cos" />
@@ -63,7 +53,7 @@
         <Button
             android:id="@+id/btn_e"
             style="@style/ButtonScientific"
-            android:text="e" />
+            android:text="exp" />
 
         <Button
             android:id="@+id/btn_sc_cl"
@@ -84,11 +74,6 @@
             android:text="%" />
 
         <Button
-            android:id="@+id/btn_tan"
-            style="@style/ButtonScientific"
-            android:text="tan" />
-
-        <Button
             android:id="@+id/btn_fact"
             style="@style/ButtonScientific"
             android:text="!" />
@@ -99,9 +84,9 @@
             android:text="^" />
 
         <Button
-            android:id="@+id/btn_sqr"
+            android:id="@+id/btn_sqrt"
             style="@style/ButtonScientific"
-            android:text="sqr" />
+            android:text="sqrt" />
     </LinearLayout>
 
 </LinearLayout>
