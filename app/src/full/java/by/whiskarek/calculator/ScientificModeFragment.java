@@ -7,13 +7,14 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
-public class ScientificModeFragment extends Fragment {
+public class ScientificModeFragment extends MainFragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.scientific, container, false);
+        View view = inflater.inflate(R.layout.scientific, container, false);
+        initOnClickListeners((ViewGroup) view);
+        return view;
     }
 }

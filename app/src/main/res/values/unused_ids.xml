@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="btn_cos" type="id" />
+    <item name="btn_ln" type="id" />
+    <item name="btn_log" type="id" />
+    <item name="btn_sin" type="id" />
+    <item name="btn_e" type="id" />
+    <item name="btn_sqrt" type="id" />
+</resources>

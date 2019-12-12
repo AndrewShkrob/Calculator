@@ -6,8 +6,8 @@ android {
     buildToolsVersion "29.0.2"
 
     defaultConfig {
-        applicationId "by.whiskarek.calculator"
-        minSdkVersion 23
+        applicationId "by.whiskarek.by.whiskarek.calculator"
+        minSdkVersion 24
         targetSdkVersion 29
         versionName = getNewVersionName()
         versionCode = getVersionCode(versionName)
